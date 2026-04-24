@@ -19,44 +19,44 @@
     }
 
     :root {
-      --ink: #0d0e1a;
-      --ink2: #2e3148;
-      --ink3: #6b7080;
-      --paper: #f4f5fa;
-      --paper2: #eaecf5;
-      --paper3: #d8dce8;
-      --accent: #6c3ff5;
-      --accent2: #9b6dff;
-      --green: #1a6b4a;
-      --green-lt: #ccf0de;
+      --ink: #1a1410;
+      --ink2: #3d3028;
+      --ink3: #7a6e65;
+      --paper: #faf7f2;
+      --paper2: #f2ede5;
+      --paper3: #e4ddd3;
+      --accent: #c95f0a;
+      --accent2: #f09040;
+      --green: #2a5c3f;
+      --green-lt: #d4ead9;
       --mono: 'DM Mono', monospace;
       --sans: 'Outfit', sans-serif;
       --serif: 'DM Serif Display', serif;
       --max: 1100px;
       --theme-transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
       /* Always-dark surface tokens — used by card, projects bg, footer */
-      --surface-dark: #0d0e1a;
-      --surface-dark-2: #13152b;
-      --surface-dark-text: #f4f5fa;
-      --surface-dark-muted: rgba(244, 245, 250, 0.45);
-      --surface-dark-faint: rgba(244, 245, 250, 0.1);
+      --surface-dark: #1a1410;
+      --surface-dark-2: #241c15;
+      --surface-dark-text: #faf7f2;
+      --surface-dark-muted: rgba(250, 247, 242, 0.45);
+      --surface-dark-faint: rgba(250, 247, 242, 0.1);
     }
 
     :root[data-theme="dark"] {
-      --ink: #e4e6f5;
-      --ink2: #a8adc8;
-      --ink3: #6b7080;
-      --paper: #0d0e1a;
-      --paper2: #13152b;
-      --paper3: #1e2138;
-      --accent: #7d52f7;
-      --accent2: #a87dff;
+      --ink: #f0ebe3;
+      --ink2: #c2b8ae;
+      --ink3: #7a6e65;
+      --paper: #1a1410;
+      --paper2: #241c15;
+      --paper3: #30231a;
+      --accent: #e07020;
+      --accent2: #f0a050;
       /* Dark-mode surface tokens — slightly lighter than base to create depth */
-      --surface-dark: #13152b;
-      --surface-dark-2: #1a1d38;
-      --surface-dark-text: #e4e6f5;
-      --surface-dark-muted: rgba(228, 230, 245, 0.45);
-      --surface-dark-faint: rgba(228, 230, 245, 0.1);
+      --surface-dark: #241c15;
+      --surface-dark-2: #2e2018;
+      --surface-dark-text: #f0ebe3;
+      --surface-dark-muted: rgba(240, 235, 227, 0.45);
+      --surface-dark-faint: rgba(240, 235, 227, 0.1);
     }
 
     html {
@@ -95,14 +95,14 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.2rem 3rem;
-      background: rgba(244, 245, 250, 0.88);
+      background: rgba(250, 247, 242, 0.88);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--paper3);
       transition: var(--theme-transition);
     }
 
     :root[data-theme="dark"] nav {
-      background: rgba(13, 14, 26, 0.88);
+      background: rgba(26, 20, 16, 0.88);
     }
 
     /* ─── THEME TOGGLE ─── */
@@ -230,8 +230,8 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(108, 63, 245, 0.08);
-      border: 1px solid rgba(108, 63, 245, 0.2);
+      background: rgba(201, 95, 10, 0.08);
+      border: 1px solid rgba(201, 95, 10, 0.2);
       padding: 4px 12px;
       border-radius: 2px;
       margin-bottom: 1.5rem;
@@ -340,7 +340,7 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      border: 40px solid rgba(108, 63, 245, 0.15);
+      border: 40px solid rgba(201, 95, 10, 0.15);
     }
 
     .avail-dot {
@@ -428,7 +428,7 @@
     .pill:hover {
       border-color: var(--accent);
       color: var(--accent);
-      background: rgba(108, 63, 245, 0.04);
+      background: rgba(201, 95, 10, 0.04);
     }
 
     /* ─── SECTION COMMON ─── */
