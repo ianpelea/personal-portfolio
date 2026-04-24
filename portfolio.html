@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ian Vincent Pelea — Full-Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --ink: #0f0e0d;
+      --ink2: #3a3835;
+      --ink3: #7a7771;
+      --paper: #f5f2eb;
+      --paper2: #ede9df;
+      --paper3: #e2ddd3;
+      --accent: #c84b2e;
+      --accent2: #e8673d;
+      --green: #2a5c3f;
+      --green-lt: #d4ead9;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Outfit', sans-serif;
+      --serif: 'DM Serif Display', serif;
+      --max: 1100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: rgba(245, 242, 235, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--paper3);
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink3);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink3);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      align-items: center;
+      gap: 4rem;
+    }
+
+    .hero-left {
+      padding-top: 2rem;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(200, 75, 46, 0.08);
+      border: 1px solid rgba(200, 75, 46, 0.2);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-role {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--ink2);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 12px 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink);
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      padding: 12px 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--ink2);
+      transition: all 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ─── HERO RIGHT: AVAILABILITY CARD ─── */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .availability-card {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .availability-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 40px solid rgba(200, 75, 46, 0.15);
+    }
+
+    .avail-dot {
+      width: 8px;
+      height: 8px;
+      background: #4caf6c;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      position: relative;
+      top: -1px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 108, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 6px rgba(76, 175, 108, 0);
+      }
+    }
+
+    .avail-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 235, 0.5);
+      margin-bottom: 1rem;
+    }
+
+    .avail-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .avail-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      border-top: 1px solid rgba(245, 242, 235, 0.1);
+      padding-top: 1.5rem;
+    }
+
+    .avail-stat-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245, 242, 235, 0.4);
+      margin-bottom: 4px;
+    }
+
+    .avail-stat-val {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--paper);
+    }
+
+    .stack-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper3);
+      color: var(--ink2);
+      letter-spacing: 0.04em;
+      background: var(--paper2);
+      transition: all 0.15s;
+      cursor: default;
+    }
+
+    .pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200, 75, 46, 0.04);
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--paper3);
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp-section {
+      background: var(--paper);
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 0;
+    }
+
+    .exp-timeline {
+      border-right: 1px solid var(--paper3);
+      padding-right: 3rem;
+    }
+
+    .exp-item-nav {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--paper3);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .exp-item-nav:last-child {
+      border-bottom: none;
+    }
+
+    .exp-item-nav.active .exp-company {
+      color: var(--accent);
+    }
+
+    .exp-item-nav.active {
+      border-right: 2px solid var(--accent);
+      margin-right: -1px;
+    }
+
+    .exp-company {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 4px;
+      transition: color 0.2s;
+    }
+
+    .exp-period {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.06em;
+    }
+
+    .exp-details {
+      padding-left: 3rem;
+    }
+
+    .exp-panel {
+      display: none;
+    }
+
+    .exp-panel.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateX(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .exp-role {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .exp-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-desc {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--ink2);
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-bg {
+      background: var(--ink);
+    }
+
+    .projects-bg .section-title {
+      color: var(--paper);
+    }
+
+    .projects-bg .section-num {
+      color: var(--accent2);
+    }
+
+    .projects-bg .section-line {
+      background: rgba(245, 242, 235, 0.1);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(245, 242, 235, 0.08);
+    }
+
+    .project-card {
+      background: var(--ink);
+      padding: 2.5rem;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+
+    .project-card:hover {
+      background: rgba(245, 242, 235, 0.04);
+    }
+
+    .project-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .project-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.2rem;
+    }
+
+    .project-name {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      color: var(--paper);
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: rgba(245, 242, 235, 0.55);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tech-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 8px;
+      border: 1px solid rgba(245, 242, 235, 0.15);
+      color: rgba(245, 242, 235, 0.5);
+      letter-spacing: 0.04em;
+    }
+
+    .project-url {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent2);
+      text-decoration: none;
+      margin-top: 1rem;
+      letter-spacing: 0.06em;
+      transition: opacity 0.2s;
+    }
+
+    .project-url:hover {
+      opacity: 0.7;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--paper3);
+    }
+
+    .skill-group {
+      background: var(--paper);
+      padding: 2rem;
+    }
+
+    .skill-group-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .skill-list li {
+      font-size: 14px;
+      color: var(--ink2);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skill-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--paper3);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .about-big-text {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    .about-big-text em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .about-body {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.8;
+    }
+
+    .about-body p+p {
+      margin-top: 1rem;
+    }
+
+    .about-right {
+      padding-top: 1rem;
+    }
+
+    .about-fact {
+      border-top: 1px solid var(--paper3);
+      padding: 1.5rem 0;
+    }
+
+    .about-fact:last-child {
+      border-bottom: 1px solid var(--paper3);
+    }
+
+    .about-fact-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 4px;
+    }
+
+    .about-fact-val {
+      font-size: 15px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-section {
+      background: var(--paper2);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .contact-big {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-big em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-sub {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink2);
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--paper3);
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .contact-link-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--paper2);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      color: rgba(245, 242, 235, 0.4);
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 2rem;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav {
+        padding: 1.2rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 4rem;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      section {
+        padding: 4rem 1.5rem;
+      }
+
+      .exp-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exp-timeline {
+        border-right: none;
+        border-bottom: 1px solid var(--paper3);
+        padding-right: 0;
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .exp-item-nav.active {
+        border-right: none;
+        border-bottom: 2px solid var(--accent);
+        margin-right: 0;
+        margin-bottom: -1px;
+      }
+
+      .exp-details {
+        padding-left: 0;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">IVP / Full-Stack Dev</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <span class="hero-tag"><span class="avail-dot"></span> Available for opportunities</span>
+      <h1 class="hero-name">Ian<br><em>Vincent</em><br>Pelea</h1>
+      <p class="hero-role">// Full-Stack Web Developer</p>
+      <p class="hero-desc">Building scalable web applications end-to-end — from intuitive interfaces to reliable backend
+        systems. Currently based in the Philippines, open to remote roles worldwide.</p>
+      <div class="hero-ctas">
+        <a href="#projects" class="btn-primary">View Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="availability-card">
+        <p class="avail-label"><span class="avail-dot"></span> Open to work</p>
+        <p class="avail-title">Let's build something remarkable together.</p>
+        <div class="avail-stats">
+          <div>
+            <p class="avail-stat-label">Experience</p>
+            <p class="avail-stat-val">7+ Years</p>
+          </div>
+          <div>
+            <p class="avail-stat-label">Role</p>
+            <p class="avail-stat-val">Full-Stack</p>
+          </div>
+          <div>
+            <p class="avail-stat-label">Focus</p>
+            <p class="avail-stat-val">Web & APIs</p>
+          </div>
+          <div>
+            <p class="avail-stat-label">Location</p>
+            <p class="avail-stat-val">Philippines / Remote</p>
+          </div>
+        </div>
+      </div>
+      <div class="stack-pills">
+        <span class="pill">Laravel</span>
+        <span class="pill">React.js</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">MongoDB</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">AWS</span>
+        <span class="pill">REST APIs</span>
+        <span class="pill">Microservices</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="exp-grid reveal">
+      <div class="exp-timeline">
+        <div class="exp-item-nav active" onclick="showExp('xtendly', this)">
+          <p class="exp-company">Xtendly</p>
+          <p class="exp-period">Full-Stack Developer</p>
+        </div>
+        <div class="exp-item-nav" onclick="showExp('prosperna', this)">
+          <p class="exp-company">Prosperna</p>
+          <p class="exp-period">Full-Stack Developer</p>
+        </div>
+      </div>
+      <div class="exp-details">
+        <div class="exp-panel active" id="exp-xtendly">
+          <p class="exp-role">Full-Stack Developer</p>
+          <p class="exp-meta">Xtendly &nbsp;·&nbsp; First Role</p>
+          <p class="exp-desc">Honed core full-stack skills building and maintaining web applications in a collaborative,
+            cross-functional environment. Worked across the entire development lifecycle — from UI to infrastructure.
+          </p>
+          <ul class="exp-bullets">
+            <li>Developed features using Laravel (PHP) and React.js across multiple projects</li>
+            <li>Built and maintained REST APIs for client applications</li>
+            <li>Applied microservice architecture principles to modular system design</li>
+            <li>Maintained and deployed applications on DigitalOcean environments</li>
+            <li>Worked with OctoberCMS and MySQL for content and data management</li>
+            <li>Collaborated with cross-functional teams to deliver user-focused solutions</li>
+          </ul>
+        </div>
+        <div class="exp-panel" id="exp-prosperna">
+          <p class="exp-role">Full-Stack Developer</p>
+          <p class="exp-meta">Prosperna &nbsp;·&nbsp; Current Role</p>
+          <p class="exp-desc">Expanded into cloud-native development and modern tooling while maintaining legacy
+            systems. Played a key role in building a full-featured eCommerce platform from the ground up.</p>
+          <ul class="exp-bullets">
+            <li>Built and scaled Prosperna One — a full-featured eCommerce platform for SMEs</li>
+            <li>Implemented microservices, REST APIs, and AWS cloud deployment at scale</li>
+            <li>Developed core features: product management, payments, shipping, order tracking</li>
+            <li>Enhanced performance and optimized workflows across the full stack</li>
+            <li>Expanded toolkit with MongoDB, TypeScript, AWS Lambda, and unit testing</li>
+            <li>Leveraged AI-assisted development tools to accelerate delivery and code quality</li>
+            <li>Maintained and improved legacy projects inherited from previous roles</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects-bg" style="max-width: 100%; padding: 6rem 0;">
+    <div style="max-width: var(--max); margin: 0 auto; padding: 0 3rem;">
+      <div class="section-header reveal">
+        <span class="section-num" style="color: var(--accent2);">02</span>
+        <h2 class="section-title" style="color: var(--paper);">Projects</h2>
+        <div class="section-line" style="background: rgba(245,242,235,0.1);"></div>
+      </div>
+    </div>
+    <div class="projects-grid reveal"
+      style="max-width: var(--max); margin: 0 auto; padding: 0 3rem; background: transparent; gap: 1.5rem;">
+      <div class="project-card">
+        <p class="project-tag">Xtendly · Utility</p>
+        <h3 class="project-name">PayGPA & PayGWA</h3>
+        <p class="project-desc">Utility payment platforms enabling users to pay electricity and water bills online.
+          Features secure payment gateway integration, billing dashboards, and recurring data tracking.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Laravel</span>
+          <span class="tech-tag">React.js</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">REST API</span>
+          <span class="tech-tag">DigitalOcean</span>
+        </div>
+        <a href="https://paygpa.com/" target="_blank" class="project-url">paygpa.com ↗</a>
+      </div>
+      <div class="project-card">
+        <p class="project-tag">Prosperna · eCommerce</p>
+        <h3 class="project-name">Prosperna One</h3>
+        <p class="project-desc">A scalable, full-featured eCommerce platform for SMEs. Built with microservice
+          architecture and cloud deployment — covering product management, payments, shipping, and order tracking.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">MongoDB</span>
+          <span class="tech-tag">AWS</span>
+          <span class="tech-tag">Microservices</span>
+        </div>
+        <a href="https://www.prosperna.com/" target="_blank" class="project-url">prosperna.com ↗</a>
+      </div>
+      <div class="project-card">
+        <p class="project-tag">Prosperna · eCommerce</p>
+        <h3 class="project-name">myStore & myStore Marketplace</h3>
+        <p class="project-desc">First-generation eCommerce solutions — myStore for core storefront features and myStore
+          Marketplace for user sign-up, theme selection, subscription plans, and automated store creation. The
+          foundation that evolved into Prosperna One.</p>
+        <div class="project-tech">
+          <span class="tech-tag">Laravel</span>
+          <span class="tech-tag">React.js</span>
+          <span class="tech-tag">OctoberCMS</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">REST API</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <p class="skill-group-title">Backend</p>
+        <ul class="skill-list">
+          <li>Laravel (PHP)</li>
+          <li>Node.js</li>
+          <li>Express.js</li>
+          <li>REST APIs</li>
+          <li>Microservices</li>
+          <li>OctoberCMS</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Frontend</p>
+        <ul class="skill-list">
+          <li>React.js</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>WebSocket</li>
+          <li>Responsive UI</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Data & Cloud</p>
+        <ul class="skill-list">
+          <li>MySQL</li>
+          <li>MongoDB</li>
+          <li>AWS Lambda</li>
+          <li>DigitalOcean</li>
+          <li>Database Optimization</li>
+          <li>API Documentation</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Practices</p>
+        <ul class="skill-list">
+          <li>Unit Testing</li>
+          <li>OOP</li>
+          <li>Requirements Analysis</li>
+          <li>Root Cause Analysis</li>
+          <li>Problem Solving</li>
+          <li>AI-Assisted Dev</li>
+          <li>GitHub / Version Control</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="background: var(--paper2); max-width: 100%; padding: 6rem 0;">
+    <div style="max-width: var(--max); margin: 0 auto; padding: 0 3rem;">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">About</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid reveal">
+        <div>
+          <p class="about-big-text">I thrive on solving problems <em>across the full stack</em> — wherever complexity
+            lives.</p>
+          <div class="about-body">
+            <p>My journey as a developer started at Xtendly, where I built a solid foundation in full-stack development
+              — crafting APIs, working across the frontend and backend, and deploying real-world applications.</p>
+            <p>At Prosperna, I leveled up significantly: contributing to a large-scale eCommerce platform used by
+              thousands of SMEs, adopting modern tooling like TypeScript and AWS, and integrating AI-assisted workflows
+              to stay sharp in a fast-moving industry.</p>
+            <p>My approach is grounded in adaptability, continuous learning, and writing code that is both functional
+              and maintainable. I'm passionate about systems that scale — and teams that communicate well.</p>
+          </div>
+        </div>
+        <div class="about-right">
+          <div class="about-fact">
+            <p class="about-fact-label">Current Company</p>
+            <p class="about-fact-val">Prosperna</p>
+          </div>
+          <div class="about-fact">
+            <p class="about-fact-label">Previous Company</p>
+            <p class="about-fact-val">Xtendly</p>
+          </div>
+          <div class="about-fact">
+            <p class="about-fact-label">Education</p>
+            <p class="about-fact-val">Cavite State University</p>
+          </div>
+          <div class="about-fact">
+            <p class="about-fact-label">Location</p>
+            <p class="about-fact-val">Philippines (Open to Remote)</p>
+          </div>
+          <div class="about-fact">
+            <p class="about-fact-label">Specialty</p>
+            <p class="about-fact-val">Full-Stack · APIs · Cloud · eCommerce</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact-section" style="max-width: 100%; padding: 6rem 0;">
+    <div style="max-width: var(--max); margin: 0 auto; padding: 0 3rem;">
+      <div class="contact-inner reveal">
+        <div>
+          <h2 class="contact-big">Let's work<br><em>together.</em></h2>
+          <p class="contact-sub">Whether you're looking for a full-stack developer to join your team, or need someone to
+            architect and build your next product — I'd love to hear about it.</p>
+          <a href="#" class="btn-primary" style="display: inline-block;">Start a Conversation →</a>
+        </div>
+        <div class="contact-links">
+          <a href="https://www.linkedin.com/in/ian-vincent-pelea" target="_blank" class="contact-link">
+            <div class="contact-link-icon">in</div>
+            <span>linkedin.com/in/ian-vincent-pelea</span>
+          </a>
+          <a href="https://github.com/" target="_blank" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </div>
+            <span>github.com/ianvincentpelea</span>
+          </a>
+          <div class="contact-link" style="cursor: default;">
+            <div class="contact-link-icon">@</div>
+            <span>Available via LinkedIn</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Ian Vincent Pelea &nbsp;·&nbsp; Built with craft &amp; coffee</p>
+  </footer>
+
+  <script>
+    function showExp(id, navEl) {
+      document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.exp-item-nav').forEach(n => n.classList.remove('active'));
+      document.getElementById('exp-' + id).classList.add('active');
+      navEl.classList.add('active');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
